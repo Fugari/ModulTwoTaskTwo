@@ -4,23 +4,22 @@ import { useState } from 'react';
 
 export const App = () => {
 	// Можно задать 2 состояния — steps и activeIndex
-  const [steps] = useState(data);
-  const [activeIndex, setActiveIndex] = useState(0);
+	const [steps] = useState(data);
+	const [activeIndex, setActiveIndex] = useState(0);
 
-  const isFirstStep = activeIndex === 0;
-  const isLastStep = activeIndex === steps.length - 1;
+	const isFirstStep = activeIndex === 0;
+	const isLastStep = activeIndex === steps.length - 1;
 
 	// И определить 3 обработчика: Клик назад, Клик вперед, Начать сначала
-  function clickNext() {
-	if(isLastStep) {
-		setActiveIndex(0);
-	} else {setActiveIndex((activeIndex) => activeIndex + 1);}
+	function clickNext() {
+		if(isLastStep) {
+			setActiveIndex(0);
+		} else {setActiveIndex((activeIndex) => activeIndex + 1);}
 
-  }
-  function clickBack() {
-    setActiveIndex((activeIndex) => activeIndex - 1);
-  }
-
+  	}
+  	function clickBack() {
+    		setActiveIndex((activeIndex) => activeIndex - 1);
+  	}
 
 	return (
 		<div className={styles.container}>
@@ -32,11 +31,11 @@ export const App = () => {
 					</div>
 					<ul className={styles['steps-list']}> 
 						{steps.map((element, index) => (
-            				<li key={element.id} className={`${styles['steps-item']} ${index < activeIndex && styles.done || index === activeIndex && styles.active}`}>
-                				<button className={styles['steps-item-button']} onClick={() => setActiveIndex(index)}>{parseInt(element.id)}</button>
-                			{	element.title}
-              				</li>
-          				))}
+            						<li key={element.id} className={`${styles['steps-item']} ${index < activeIndex && styles.done || index === activeIndex && styles.active}`}>
+                						<button className={styles['steps-item-button']} onClick={() => setActiveIndex(index)}>{parseInt(element.id)}</button>
+                						{element.title}
+              						</li>
+          					))}
 					</ul>
 					<div className={styles['buttons-container']}>
 						<button className={styles.button} onClick={clickBack} disabled={isFirstStep}>BACK</button>
